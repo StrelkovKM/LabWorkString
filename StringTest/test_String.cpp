@@ -1,7 +1,10 @@
 #include <iostream>
 #include <gtest.h>
 
+int main()
+{
 
+}
 //TEST(TGames, can_create_games_with_positive_count)
 //{
 //  ASSERT_NO_THROW(TGames bf(3, ""));
@@ -98,4 +101,4 @@
 //TEST(TSWCurling, throws_when_create_TSWCurling_with_negative_lenght)
 //{
 //  ASSERT_ANY_THROW(TSWCurling bf(-3));
-}
+//}
