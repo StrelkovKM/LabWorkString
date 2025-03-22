@@ -17,7 +17,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StringLib) #Добавляем �
 add_subdirectory(StringLib) #Добавляем директорию с под-CMakeList-ом, и выполняем под-CMakeList
 add_subdirectory(StringApp)
 add_subdirectory(StringTest)
-add_subdirectory(GTestLib)
+add_subdirectory(gtest)
 
 
 #file(GLOB hdrs "*.h*") #Добавляем в переменную hdrs все файлы с расширением .h
