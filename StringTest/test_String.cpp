@@ -1,10 +1,6 @@
 #include <iostream>
 #include <gtest.h>
 
-int main()
-{
-
-}
 //TEST(TGames, can_create_games_with_positive_count)
 //{
 //  ASSERT_NO_THROW(TGames bf(3, ""));
