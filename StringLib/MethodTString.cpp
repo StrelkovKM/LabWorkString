@@ -12,7 +12,7 @@ TString::TString(const char* str_)
   if ((str_ == nullptr))
     throw "str_ == nullptr";
   {
-    len = strlen(str_);
+    len = cstrlen(str_);
     str = new char[len + 1];
 
     for (int i = 0; i < len; ++i)
@@ -58,7 +58,7 @@ TString::TString(const char* str_, int len_)
 {
   if (len_ <= 0)
     throw ("len_ <= 0");
-  if (strlen(str_) != len_)
+  if (cstrlen(str_) != len_)
     throw ("strlen(str_) != len_");
 
   len = len_;
@@ -93,7 +93,7 @@ int TString::GetLen() const
 void TString::SetStr(const char* str_)
 {
   delete[] str;
-  len = strlen(str_);
+  len = cstrlen(str_);
   str = new char[len + 1];
   for (int i = 0; i < len; ++i)
     str[i] = str_[i];
@@ -240,4 +240,14 @@ istream& operator>>(istream& input, TString& line)
   line.SetStr(buf);
 
   return input;
+}
+
+int cstrlen(const char* str)
+{
+  int counter = 0;
+  if (str == nullptr)
+    throw "str == nullptr";
+  while (str[counter] != '\0')
+    counter++;
+  return counter;
 }

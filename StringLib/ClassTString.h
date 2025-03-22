@@ -37,3 +37,5 @@ public:
   friend ostream& operator<<(ostream& output, TString& obj); ///+
   friend istream& operator>>(istream& input, TString& obj); ///+
 };
+
+int cstrlen(const char* str);
