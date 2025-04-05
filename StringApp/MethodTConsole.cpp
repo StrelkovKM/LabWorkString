@@ -1,5 +1,7 @@
 #include "ClassTConsole.h"
 #include "ClassTString.h"
+#include <conio.h>
+#include <Windows.h>
 
 TConsole::TConsole()
 {

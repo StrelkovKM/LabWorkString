@@ -46,4 +46,4 @@ public:
   friend istream& operator>>(istream& input, TString& obj);
 };
 
-int cstrlen(const char* str);
+int cstrlen(const char* str); 
