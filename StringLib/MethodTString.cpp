@@ -3,7 +3,7 @@ constexpr auto BUFF = 256;
 
 TString::TString()
 {
-  str = new char[1] {'\0'};
+  str = new char {'\0'};
   len = 1;
 }
 
@@ -94,7 +94,7 @@ void TString::SetStr(const char* str_)
 {
   delete[] str;
   len = cstrlen(str_);
-  str = new char[len + 1];
+  str = new char[len + 1] {};
   for (int i = 0; i < len; ++i)
     str[i] = str_[i];
 
@@ -217,7 +217,7 @@ bool TString::operator>(const TString& line)
 }
 
 
-char TString::operator[](int p)
+char& TString::operator[](int p)
 {
   if (p >= len && p < 0)
     throw "size";
@@ -251,3 +251,198 @@ int cstrlen(const char* str)
     counter++;
   return counter;
 }
+
+int TString::FindFirstIndex(const char* word)
+{
+  int lenW = cstrlen(word);
+
+  if (lenW > len) throw ("lenW > len");
+
+  for (int i = 0; i < len - lenW + 1; i++)
+  {
+    if (str[i] == word[0])
+    {
+      if (lenW == 1) return i;
+
+      bool flag = false;
+
+      for (int k = 1; k < lenW; k++)
+      {
+        if (str[k + i] == word[k]) flag = true;
+        else
+        {
+          flag = false;
+          break;
+        }
+      }
+
+      if (flag == true) return i;
+    }
+  }
+
+  cout << "Not founded ";
+  return -404;
+}
+
+int* TString::FindAllInclude(const char* word)
+{
+  int lenW = cstrlen(word), k = 0;
+  int* include = new int[FindCountInclude(word)] {};
+
+  for (int i = 0; i < len - lenW + 1; ++i)
+  {
+    bool flag = true;
+
+    for (int j = 0; j < lenW; ++j)
+    {
+      if (str[i + j] == word[j]);
+      else
+      {
+        flag = false;
+        break;
+      }
+    }
+
+    if (flag == true)
+    {
+      include[k++] = i;
+    }
+  }
+
+  return include;
+}
+
+char** TString::SplitString(const char* word)
+{
+  int* divider = FindAllInclude(word), countWords{}, k{};
+  
+  for (int i = 1; i < FindCountInclude(word); ++i)
+    if (divider[i] - divider[i - 1] > 1) countWords++;
+
+  char** split = new char*[countWords];
+
+  for (int i = 1; i < FindCountInclude(word); ++i)
+  {
+    if (divider[i] - divider[i - 1] > 1)
+    {
+      split[k] = new char[divider[i] - divider[i - 1]];
+
+      for (int j = divider[i - 1] + 1, f = 0; j < divider[i]; j++, f++)
+      {
+        split[k][f] = str[j];
+        cout << split[k][f];
+      }
+      split[k++][divider[i] - divider[i - 1]] = '\0';
+      cout << "\n";
+    }
+  }
+  return split;
+}
+
+int TString::FindCountInclude(const char* word)
+{
+  int lenW = cstrlen(word), k{ 0 };
+  for (int i = 0; i < len - lenW + 1; ++i)
+  {
+    bool flag = true;
+
+    for (int j = 0; j < lenW; ++j)
+    {
+      if (str[i + j] == word[j]);
+      else
+      {
+        flag = false;
+        break;
+      }
+    }
+
+    if (flag == true)
+    {
+      k++;
+    }
+  }
+  return k;
+}
+
+char TString::FindFreqSymbol()
+{
+  int* symbols = new int[127] {}, max = 0;
+  char res;
+  for (int i = 0; i < len; i++)
+    symbols[int(str[i])]++;
+  for (int i = 33; i <= 127; i++)
+  {
+    if (max < symbols[i])
+    {
+      max = symbols[i];
+      res = char(i);
+    }
+  }
+  return res;
+}
+
+char* TString::StrSingleInclude()
+{
+  int* symbols = new int[127] {}, counter = 0, k = 0;
+  for (int i = 0; i < len; i++)
+  {
+    symbols[int(str[i])]++;
+    if (symbols[int(str[i])] == 1) counter++;
+  }
+
+  char* single = new char[counter];
+
+  for (int i = 0; i < 127; ++i)
+    if (symbols[i] > 0) 
+    {
+      cout << char(i) << "\n";
+      single[k++] = char(i);
+      
+    }
+  single[counter] = '\0';
+  return single;
+}
+
+char** TString::CountSymbolInclude()
+{
+  int* symbols = new int[127] {}, counter = 0, k = 0;
+  for (int i = 0; i < len; i++)
+  {
+    symbols[int(str[i])]++;
+    if (symbols[int(str[i])] == 1) counter++;
+  }
+
+  char** countSymbols = new char*[counter];
+  for (int i = 0; i < 127; ++i)
+    if (symbols[i] > 0)
+    {
+      int copy = symbols[i], check = 0, m = 2;
+      while (copy != 0)
+      {
+        check++;
+        copy /= 10;
+      }
+      copy = symbols[i];
+
+      countSymbols[k] = new char[3 + check] {};
+
+      countSymbols[k][0] = char(i);
+      countSymbols[k][1] = '-';
+      while (copy != 0)
+      {
+        countSymbols[k][m++] = '0' + copy % 10;
+        copy /= 10;
+      }
+      countSymbols[k][m] = '\0';
+
+      for (int j = 0; j < m; j++)
+        cout << countSymbols[k][j];
+      cout << "\n"; 
+      k++;
+    }
+
+  return countSymbols;
+}
+
+
+

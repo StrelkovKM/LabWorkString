@@ -1,11 +1,14 @@
 #include "ClassTString.h"
-
+#include "ClassTConsole.h"
 #include <iostream>
-
 using namespace std;
+
 
 int main()
 {
-	TString B("B") , G("G"), BG = B + G, K = BG;
-	cout << B[0];
+	TConsole A;
+	TString B;
+	cin >> A; A.InputInlen(B); cout << B;
+
+	
 }
