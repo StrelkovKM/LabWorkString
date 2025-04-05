@@ -1,7 +1,6 @@
 #include "ClassTConsole.h"
 #include "ClassTString.h"
 #include <conio.h>
-#include <Windows.h>
 
 TConsole::TConsole()
 {
@@ -66,7 +65,7 @@ void TConsole::InputInlen(TString &obj) const
 			system("cls");
 			ConsoleOutputXY();
 		}
-		buff[i] = _getch();
+		buff[i] = getch();
 		cout << buff[i++];
 	}
 	buff[i] = '\0';
