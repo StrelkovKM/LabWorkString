@@ -7,8 +7,8 @@ using namespace std;
 int main()
 {
 	TConsole A;
-	TString B;
-	cin >> A; A.InputInlen(B); cout << B;
-
-	
+	TString B("sdfdsfds");
+	char h{}; int i = 0;
+	cin >> A; A.InputInlen(B);
+	cout << B;
 }

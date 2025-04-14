@@ -1,5 +1,7 @@
 #include <iostream>
 #include <gtest.h>
+#include "ClassTString.h"
+#include "ClassTConsole.h"
 
 //TEST(TGames, can_create_games_with_positive_count)
 //{
@@ -98,3 +100,96 @@
 //{
 //  ASSERT_ANY_THROW(TSWCurling bf(-3));
 //}
+
+///Test TString
+
+TEST(TString, can_create_TString)
+{
+  ASSERT_NO_THROW(TString bf("2", 1));
+}
+TEST(TString, throws_when_create_TString_nullptr)
+{
+  ASSERT_ANY_THROW(TString bf(nullptr));
+}
+
+TEST(TString, can_copy)
+{
+  TString bf("");
+  TString kf(bf);
+}
+
+TEST(TString, throws_when_create_TString_nullptr_negative_len)
+{
+  ASSERT_ANY_THROW(TString bf(nullptr, -3));
+}
+
+
+TEST(TString, can_get_len)
+{
+  TString bf("gfg", 3);
+
+  EXPECT_NEAR(3, bf.GetLen(), 0.000001);
+}
+
+TEST(TString, can_set_len)
+{
+  TString bf("gfg", 3);
+  bf.SetLen(2);
+  EXPECT_NEAR(2, bf.GetLen(), 0.000001);
+}
+
+
+
+/// Test TConsole
+
+TEST(TConsole, can_create_positive_console)
+{
+  ASSERT_NO_THROW(TConsole bf(3, 4, 10));
+}
+
+TEST(TConsole, can_create_negative_console)
+{
+  ASSERT_ANY_THROW(TConsole bf(-3, -4, -10));
+}
+
+TEST(TConsole, can_get_x)
+{
+  TConsole bf(3, 3, 3);
+
+  EXPECT_NEAR(3, bf.GetX(), 0.000001);
+}
+
+TEST(TString, can_set_x)
+{
+  TConsole bf(3, 3, 3);
+  bf.SetX(3);
+  EXPECT_NEAR(3, bf.GetX(), 0.000001);
+}
+
+TEST(TConsole, can_get_y)
+{
+  TConsole bf(3, 3, 3);
+
+  EXPECT_NEAR(3, bf.GetY(), 0.000001);
+}
+
+TEST(TString, can_set_y)
+{
+  TConsole bf(3, 3, 3);
+  bf.SetY(3);
+  EXPECT_NEAR(3, bf.GetY(), 0.000001);
+}
+
+TEST(TConsole, can_get_inlen)
+{
+  TConsole bf(3, 3, 3);
+
+  EXPECT_NEAR(3, bf.GetInlen(), 0.000001);
+}
+
+TEST(TString, can_set_inlen)
+{
+  TConsole bf(3, 3, 3);
+  bf.SetInlen(3);
+  EXPECT_NEAR(3, bf.GetInlen(), 0.000001);
+}

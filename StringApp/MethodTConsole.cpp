@@ -9,6 +9,7 @@ TConsole::TConsole()
 
 TConsole::TConsole(int x_, int y_, int inlen_)
 {
+	if (x_ < 0 || y_ < 0 || inlen_ < 0) throw(0);
 	x = x_; y = y_; inlen = inlen_;
 }
 
@@ -33,16 +34,19 @@ int TConsole::GetInlen() const
 
 void TConsole::SetX(int x_)
 {
+	if (x_ < 0) throw(0);
 	x = x_;
 }
 
 void TConsole::SetY(int y_)
 {
+	if (y_ < 0) throw(0);
 	y = y_;
 }
 
 void TConsole::SetInlen(int inlen_)
 {
+	if (inlen_ < 0) throw(0);
 	inlen = inlen_;
 }
 
@@ -54,6 +58,7 @@ void TConsole::ConsoleOutputXY() const
 
 void TConsole::InputInlen(TString &obj) const
 {
+	system("cls");
 	ConsoleOutputXY();
 
 	char* buff = new char[256] {};

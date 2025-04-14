@@ -35,7 +35,7 @@ TString::TString(const TString& obj)
   else
     throw ("p.str == nullptr");
 
-  str = new char[ len + 1];
+  str = new char[len + 1];
   for (int i = 0; i < len; ++i)
 
     str[i] = obj.str[i];
@@ -333,7 +333,7 @@ char** TString::SplitString(const char* word)
         cout << split[k][f];
       }
       split[k++][divider[i] - divider[i - 1]] = '\0';
-      cout << "\n";
+      cout << " ";
     }
   }
   return split;
@@ -443,6 +443,3 @@ char** TString::CountSymbolInclude()
 
   return countSymbols;
 }
-
-
-
